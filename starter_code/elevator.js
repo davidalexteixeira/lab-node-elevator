@@ -4,10 +4,11 @@ class Elevator {
     this.MAXFLOOR = 10
     this.requests = []
     this.direction = 'up'
+    this.timeoutId = this.timeoutId
   }
 
   start () {
-    setInterval(this.update(), 1000)
+    this.timeoutId = setInterval(() => this.floorUp, 1000)
   }
   stop () {
     clearInterval(this.start())
@@ -39,5 +40,5 @@ module.exports = Elevator
 
 let elevator = new Elevator()
 
-elevator.floorUp()
+elevator.start()
 elevator.log()
